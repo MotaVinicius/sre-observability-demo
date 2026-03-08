@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  example-app:
+    image: prom/node-exporter:latest
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    networks:
+      - minha-rede
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    ports:
+      - 9090:9090
+    networks:
+      - minha-rede
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+    extra_hosts:
+      host.docker.internal: 192.168.1.18
+
+  grafana:
+    image: grafana/grafana:10.2.2
+    ports:
+      - 3000:3000
+    networks:
+      - minha-rede
+
+networks:
+  minha-rede:
+    driver: bridge
