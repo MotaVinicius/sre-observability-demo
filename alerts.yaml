@@ -19,3 +19,12 @@ groups:
         annotations:
           summary: "Memória baixa"
           description: "Menos de 20% de memória disponível."
+
+      - alert: ServiceDown
+        expr: up == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Servico fora do ar"
+          description: "O servico esta indisponivel"

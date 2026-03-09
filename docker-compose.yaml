@@ -17,6 +17,7 @@ services:
       - minha-rede
     volumes:
       - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./alerts.yaml:/etc/prometheus/alerts.yml
     extra_hosts:
       host.docker.internal: 192.168.1.18
 
